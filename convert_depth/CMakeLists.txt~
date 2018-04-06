@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.6.0)
+project(convert_depth)
+set(BOOST_ROOT "/home/kanrun/octree_test/boost")
+set(BOOST_INCLUDE_DIRS "${BOOST_ROOT}/include")
+set(BOOST_LIBRARY_DIRS "${BOOST_ROOT}/lib")
+add_executable(convert_depth main.cpp ${SOURCE_FILES})
+target_link_libraries(convert_depth ${LIBRARIES})

@@ -93,6 +93,7 @@ int main(int argc, char * argv[])
     bool depthPNG = Parser::hasOption("-depthpng");
     bool tumFormat = Parser::hasOption("-tum");
     const string depthFileExt = depthPNG ? ".png" : ".exr";
+    std::cout <<"depthFileExt:" <<depthFileExt <<std::endl;
     const string colorFileExt = Parser::hasOption("-png") ? ".png" : ".jpg";
     if(Parser::hasOption("-m")) depthmin = 0.001 * Parser::getFloatOption("-m");
     if(Parser::hasOption("-w")) width = Parser::getIntOption("-w");
@@ -206,8 +207,8 @@ int main(int argc, char * argv[])
                 depthPath = outputDir+"/"+depthPath;
                 rgbPath = outputDir+"/"+rgbPath;
             } else {
-                depthPath = outputDir+"/Depth"+indexStr+depthFileExt;
-                rgbPath = outputDir+"/Color"+indexStr+colorFileExt;
+                depthPath = outputDir+"/depth/Depth"+indexStr+depthFileExt;
+                rgbPath = outputDir+"/rgb/Color"+indexStr+colorFileExt;
             }
             cv::imwrite(rgbPath, rgb);
             if(depthPNG) imwrite(depthPath, depthscale * depth);

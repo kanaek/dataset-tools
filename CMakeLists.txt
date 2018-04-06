@@ -1,9 +1,20 @@
 cmake_minimum_required(VERSION 2.6.0)
 project(DatasetTools)
+set(BOOST_ROOT "/home/kanrun/octree_test/boost")
+set(BOOST_INCLUDE_DIRS "${BOOST_ROOT}/include")
+set(BOOST_LIBRARY_DIRS "${BOOST_ROOT}/lib")
+
+find_package(Boost REQUIRED)
+message("Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
+include_directories(${Boost_INCLUDE_DIRS})
+link_directories(${Boost_LIBRARY_DIRS})
 
 find_package( OpenCV REQUIRED )
-find_package( Eigen3 REQUIRED )
-include_directories(${EIGEN_INCLUDE_DIRS})
+#find_package( Eigen REQUIRED )
+find_package(PkgConfig)
+pkg_search_module(Eigen3 REQUIRED eigen3)
+include_directories(${Eigen3_INCLUDE_DIRS})
+#include_directories(${EIGEN_INCLUDE_DIRS})
 
 #set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS "-Wall -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-write-strings -Wno-deprecated -Wno-deprecated-declarations -Werror -std=c++14")
